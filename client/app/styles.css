@@ -34,3 +34,22 @@ background: linear-gradient(191.53deg, #79F2EC 0%, #14518E 100%);
     margin-left: 40px;
     margin-top: 40px;
 }
+
+.main__container {
+    display: flex;
+    margin-top: 50px;
+    justify-content:space-evenly;
+}
+
+.hero_svg_holder{
+    margin-left: -40px;
+}
+
+.hero_form{
+    width: fit-content;
+}
+
+.hero_form > h1 {
+    font-weight: 500;
+    font-size: 20px;
+}
