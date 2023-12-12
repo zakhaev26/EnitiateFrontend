@@ -21,8 +21,6 @@ export default function Home() {
   const handleSignOut = async () => {
     try {
         await logOut();
-        alert("SignedOut")
-
     } catch (e:any) {
         alert(e.message);
     }
@@ -55,6 +53,7 @@ export default function Home() {
             <h1 >
               Login To Your Account
             </h1>
+
             <button onClick={handleSignIn}>
               Sign In
             </button>
@@ -62,8 +61,7 @@ export default function Home() {
             <button onClick={handleSignOut}>
               Sign Out
             </button>
-            <h1>{user.displayName}</h1>
-           
+            <h1>{user?.displayName}</h1>           
           </div>
 
         </div>
