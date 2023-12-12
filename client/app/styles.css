@@ -19,4 +19,18 @@ background: linear-gradient(191.53deg, #79F2EC 0%, #14518E 100%);
    opacity: 0.97;
 }
 
+.nav {
+    display: flex;
+}
 
+.logo {
+    margin-left: 10px;
+    margin-top: 50px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.image {
+    margin-left: 40px;
+    margin-top: 40px;
+}
