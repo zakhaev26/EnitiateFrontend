@@ -11,11 +11,11 @@ background: linear-gradient(191.53deg, #79F2EC 0%, #14518E 100%);
 .rectangle1{
     position: relative;
     height: 630px;
-    width: 95%;
+    width: 90%;
     margin: auto;
     margin-top: 20px;
     background: linear-gradient(23.55deg, #080D0D 75.24%, #173B4D 97.12%);
-    border-radius: 35px;
+    border-radius: 28px;
    opacity: 0.97;
 }
 
