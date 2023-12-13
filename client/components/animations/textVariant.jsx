@@ -1,9 +1,8 @@
 "use client"
 import React from 'react';
 import { motion } from 'framer-motion';
-
-const AnimatedText = ({text,size}) => {
-  
+const AnimatedTextVar = ({text,size}) => {
+    
   const variants = {
     hidden: { opacity: 0, x: -20 },
     visible: (i) => ({
@@ -18,7 +17,9 @@ const AnimatedText = ({text,size}) => {
   return (
     <motion.div initial="hidden" animate="visible" variants={variants}>
       {text.split('').map((char, index) => (
-        <motion.span key={index} custom={index} style={{ display: 'inline-block',color:"#fff" ,fontWeight:'600',fontSize :parseInt(size)}}>
+        <motion.span key={index} custom={index} style={{ display: 'inline-block' , backgroundImage: 'linear-gradient(180deg, #000,#000)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',fontWeight:'600',fontSize :parseInt(size)}}>
          {char === ' ' ? '\u00A0' : char}
         </motion.span>
       ))}
@@ -26,4 +27,4 @@ const AnimatedText = ({text,size}) => {
   );
 };
 
-export default AnimatedText;
+export default AnimatedTextVar;
