@@ -4,68 +4,92 @@ import LogoSvg from "../components/animations/logo__svg"
 import HeroSvg from "../components/animations/hero__svg"
 import "./styles.css"
 import { UserAuth } from "@/auth/context/AuthContext"
-
+import { useRouter } from "next/navigation"
+import { useEffect } from "react"
+import AnimatedText from "@/components/animations/text"
 export default function Home() {
 
   const { user, googleSignIn, logOut } = UserAuth();
+  const Router = useRouter();
+
+  useEffect(()=>{
+      console.log("user = " ,user)
+  },[user])
+
 
   const handleSignIn = async () => {
     try {
-      const res = await googleSignIn();
-      alert(res)
+      await googleSignIn();
     } catch (e: any) {
-      alert(e.message);
+      console.log(e.message);
     }
   }
 
   const handleSignOut = async () => {
     try {
-        await logOut();
-    } catch (e:any) {
-        alert(e.message);
+      await logOut();
+      Router.push("/");
+    } catch (e: any) {
+      alert(e.message);
     }
-}
-
+  }
 
   return (
     <div className='mainbody'>
       .
       <div className='rectangle1'>
-
         <div className='nav'>
           <LogoSvg />
-
           <motion.h1 className="logo"
-            initial={{ opacity: 0, y: -20 }} // Initial state
-            animate={{ opacity: 1, y: 0 }}   // Animation state
-            transition={{ duration: 1 }}   // Transition duration
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
           >Enitiate</motion.h1>
-
         </div>
 
         <div className="main__container">
-
-          <div className="hero_svg_holder">
+          <motion.div
+            animate={{
+              y: [0, -20, 0],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          >
             <HeroSvg />
-          </div>
+          </motion.div>
 
           <div className="hero_form">
-            <h1 >
-              Login To Your Account
-            </h1>
 
-            <button onClick={handleSignIn}>
-              Sign In
+            {user ? (
+              <>
+              
+              <img className="circular-img" src={user.photoURL} alt="" />
+              <AnimatedText text={user?.displayName} size="28" />
+              <AnimatedText text="Last Signed In :" size="14" />
+              <AnimatedText text={user.metadata.lastSignInTime} size="10" />
+              <button onClick={handleSignOut} type="button" className="login-with-google-btn" >
+                Sign Out
+              </button>
+              <br />
+              </>
+            ) : (
+              <>
+               <AnimatedText text="Log In / Sign Up" size="29" />
+               <br /> 
+               <AnimatedText text="Level Up with Enitiate." size="14" />
+              <button onClick={handleSignIn} type="button" className="login-with-google-btn" >
+              Sign In With Google 
             </button>
+            </>
+            )}
 
-            <button onClick={handleSignOut}>
-              Sign Out
-            </button>
-            <h1>{user?.displayName}</h1>           
           </div>
 
         </div>
-
+        <div className="ellipse">ok</div>
       </div>
     </div>
   )
