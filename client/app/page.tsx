@@ -13,9 +13,6 @@ export default function Home() {
   const { user, googleSignIn, logOut } = UserAuth();
   const Router = useRouter();
 
-  useEffect(() => {
-    console.log("user = ", user)
-  }, [user])
 
   const handlePostRedirect = () => {
     Router.push("/posts");
