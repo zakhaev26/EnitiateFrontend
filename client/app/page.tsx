@@ -43,18 +43,19 @@ export default function Home() {
     initial={{ opacity: 0, x: -20 }}
     animate={{ opacity: 1, x: 0 }}
     exit={{ opacity: 0, x: -20 }}
-    transition={{duration: 2}}
+    transition={{duration: 1}}
     className="mainbody"
   >
       .
       <div className='rectangle1'>
         <div className='nav'>
           <LogoSvg />
-          <motion.h1 className="logo"
+          <motion.a className="logo"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-          >Enitiate</motion.h1>
+            href="/"
+          >Enitiate</motion.a>
         </div>
 
         <div className="main__container">
