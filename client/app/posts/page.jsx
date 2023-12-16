@@ -1,12 +1,13 @@
 "use client"
-import AnimatedText from '@/components/animations/text';
+import AnimatedTextVar from '@/components/animations/textVariant';
+import AnimatedText from '@/components/animations/text'
 import React, { useEffect, useState, useMemo } from 'react';
-// import { usePostSession } from "@/zustand/store/store"
-import "./h.css"
+import { motion, AnimatePresence } from 'framer-motion';
+import { ClipLoader } from 'react-spinners';
+import './h.css';
 
 const Container = () => {
-
-  // const { posts, addPosts } = usePostSession();
+  const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
@@ -14,68 +15,102 @@ const Container = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("https://jsonplaceholder.typicode.com/posts")
+        const res = await fetch('https://jsonplaceholder.typicode.com/posts');
         const data = await res.json();
         setPosts(data);
+        setLoading(false); // Set loading to false when data is fetched
       } catch (e) {
         console.log(e.message);
+        setLoading(false); // Set loading to false in case of an error
       }
-    }
+    };
     fetchData();
-
-  }, [])
+  }, []);
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  // Using useMemo to paginate the posts array
   const paginatedPosts = useMemo(() => {
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     return posts.slice(indexOfFirstPost, indexOfLastPost);
   }, [currentPage, posts, postsPerPage]);
 
-
   return (
     <>
-      <div style={containerStyle}>
+      <AnimatePresence>
+        {loading && (
+          <motion.div
+            key="loading"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            style={{ textAlign: 'center', marginTop: '50px' }}
+          >
+            <ClipLoader color="#000" loading={loading} size={50} />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-        {
-          paginatedPosts.map((post) => (
-            <Card body={post.body} id={post.id} title={post.title} userId={post.userId} />
-          ))
-        }
-      </div>
+      {!loading && (
+        <>
+          <div style={{textAlign:"center", marginTop:"10px"}} >
+          <AnimatedTextVar text="POSTS" size="30"/>
+          </div>
+          <div style={containerStyle}>
+            {paginatedPosts.map((post) => (
+              <Card key={post.id} body={post.body} id={post.id} title={post.title} userId={post.userId} />
+            ))}
+          </div>
 
-      <div style={{justifyContent:"space-evenly",display:"flex",margin:"0 0 30px 30px"}}>
-
-        {Array.from({ length: Math.ceil(posts.length / postsPerPage) }, (_, index) => (
-          <button key={index + 1} onClick={() => paginate(index + 1)}>
-            {index + 1}
-          </button>
-        ))}
-      </div>
-
+          <div className="pagination">
+            {Array.from({ length: Math.ceil(posts.length / postsPerPage) }, (_, index) => (
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => paginate(index + 1)}
+                className="btn"
+                style={{
+                  background: index + 1 === currentPage ? 'black' : 'transparent',
+                  color: index + 1 === currentPage ? 'white' : 'black',
+                  borderRadius: '20px',
+                }}
+                key={index + 1}
+              >
+                {index + 1}
+              </motion.button>
+            ))}
+          </div>
+        </>
+      )}
     </>
   );
 };
 
 const Card = ({ body, id, title, userId }) => {
-  return <div style={cardStyle}>
-    <AnimatedText text={`Post ${id} / UID ${userId}`} size="10px" />
-    <AnimatedText text={title} size="20px" />
-    <br />
-    <AnimatedText text={body} size="10px" />
-  </div>;
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.5 }}
+      style={cardStyle}
+    >
+      <AnimatedText text={`Post ${id} / UID ${userId}`} size="10px" />
+      <AnimatedText text={title} size="20px" />
+      <br />
+      <AnimatedText text={body} size="10px" />
+    </motion.div>
+  );
 };
 
 const containerStyle = {
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'stretch',
-  flexWrap: 'wrap', 
-  padding: '16px', 
+  flexWrap: 'wrap',
+  padding: '16px',
   boxSizing: 'border-box',
 };
 const cardStyle = {
@@ -88,6 +123,5 @@ const cardStyle = {
   margin: '8px',
   boxSizing: 'border-box',
 };
-
 
 export default Container;
