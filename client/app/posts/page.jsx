@@ -4,8 +4,10 @@ import AnimatedText from '@/components/animations/text'
 import React, { useEffect, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ClipLoader } from 'react-spinners';
-import './h.css';
-
+import './posts.css';
+import { Link } from '@mui/material';
+import { useRouter } from 'next/navigation';
+import withAuth from "@/security/withAuth"
 const Container = () => {
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
@@ -58,12 +60,6 @@ const Container = () => {
           <div style={{textAlign:"center", marginTop:"10px"}} >
           <AnimatedTextVar text="POSTS" size="30"/>
           </div>
-          <div style={containerStyle}>
-            {paginatedPosts.map((post) => (
-              <Card key={post.id} body={post.body} id={post.id} title={post.title} userId={post.userId} />
-            ))}
-          </div>
-
           <div className="pagination">
             {Array.from({ length: Math.ceil(posts.length / postsPerPage) }, (_, index) => (
               <motion.button
@@ -82,46 +78,63 @@ const Container = () => {
               </motion.button>
             ))}
           </div>
+          <div style={containerStyle}>
+            {paginatedPosts.map((post) => (
+              <Card key={post.id} body={post.body} id={post.id} title={post.title} userId={post.userId} />
+            ))}
+          </div>
+
+        
         </>
       )}
     </>
   );
 };
 
-const Card = ({ body, id, title, userId }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.5 }}
-      style={cardStyle}
-    >
-      <AnimatedText text={`Post ${id} / UID ${userId}`} size="10px" />
-      <AnimatedText text={title} size="20px" />
-      <br />
-      <AnimatedText text={body} size="10px" />
-    </motion.div>
-  );
-};
+  const Card = ({ body, id, title, userId }) => {
+  const routerx = useRouter();
 
-const containerStyle = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'stretch',
-  flexWrap: 'wrap',
-  padding: '16px',
-  boxSizing: 'border-box',
-};
-const cardStyle = {
-  flex: '0 0 calc(33.33% - 16px)',
-  padding: '16px',
-  height: 'auto',
-  background: 'linear-gradient(24deg, #080D0D 75.24%, #173B4D 97.12%)',
-  border: '1px solid #ddd',
-  borderRadius: '8px',
-  margin: '8px',
-  boxSizing: 'border-box',
-};
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.5 }}
+        style={cardStyle}
+        onClick={()=>{
+            routerx.push(`posts/${id}`)
+        }}
+      >
+        <AnimatedText text={`Post ${id} / UID ${userId}`} size="10px" />
+        <AnimatedText text={title} size="20px" />
+        <br />
+        <AnimatedText text={body} size="10px" />
+      </motion.div>
+    );
+  };
 
-export default Container;
+  const containerStyle = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'stretch',
+    flexWrap: 'wrap',
+    padding: '16px',
+    boxSizing: 'border-box',
+    cursor:"pointer",
+  };
+  const cardStyle = {
+    flex: '0 0 calc(33.33% - 16px)',
+    padding: '16px',
+    height: 'auto',
+    background: 'linear-gradient(24deg, #080D0D 75.24%, #173B4D 97.12%)',
+    border: '1px solid #ddd',
+    borderRadius: '8px',
+    margin: '8px',
+    boxSizing: 'border-box',
+  };
+
+
+  const AuthenticatedContainer = withAuth(Container); 
+
+
+export default AuthenticatedContainer;

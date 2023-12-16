@@ -102,9 +102,7 @@ export default function Home() {
             )}
 
           </div>
-
         </div>
-        <div className="ellipse">ok</div>
       </div>
     </motion.div>
   )

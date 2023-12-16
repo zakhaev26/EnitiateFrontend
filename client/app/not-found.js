@@ -6,6 +6,8 @@ import "./styles.css"
 import AnimatedText from "@/components/animations/text"
 import { Link } from "@mui/material"
 import {useRouter} from "next/navigation";
+import Toast from "../components/Toast"
+import { useEffect } from "react"
 export default function Home() {
 
   const Router = useRouter();
@@ -56,6 +58,7 @@ export default function Home() {
               <button onClick={handleHomeRedirect} type="button" style ={{marginTop:"20px"}} className="check-posts" >
                  Return Home
               </button>
+              <Toast message="Oops!This URI Doesn't exists!" />
           </div>
         </div>
       </div>
