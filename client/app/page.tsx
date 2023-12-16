@@ -5,10 +5,12 @@ import HeroSvg from "../components/animations/hero__svg"
 import "./styles.css"
 import { UserAuth } from "@/auth/context/AuthContext"
 import { useRouter } from "next/navigation"
-import { useEffect } from "react"
+import { useEffect} from "react"
 import AnimatedText from "@/components/animations/text"
 import SignpostIcon from '@mui/icons-material/Signpost';
+
 export default function Home() {
+
 
   const { user, googleSignIn, logOut } = UserAuth();
   const Router = useRouter();

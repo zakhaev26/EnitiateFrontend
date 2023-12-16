@@ -1,12 +1,15 @@
 "use client"
 import AnimatedText from '@/components/animations/text';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 // import { usePostSession } from "@/zustand/store/store"
+import "./h.css"
 
 const Container = () => {
 
   // const { posts, addPosts } = usePostSession();
   const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,18 +25,39 @@ const Container = () => {
 
   }, [])
 
-  useEffect(() => {
-    console.log(posts);
-  }, [posts])
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // Using useMemo to paginate the posts array
+  const paginatedPosts = useMemo(() => {
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    return posts.slice(indexOfFirstPost, indexOfLastPost);
+  }, [currentPage, posts, postsPerPage]);
+
+
   return (
-    <div style={containerStyle}>
-      
-      {
-        posts.map((post) => (
-          <Card body={post.body} id={post.id} title={post.title} userId={post.userId} />
-        ))
-      }
-    </div>
+    <>
+      <div style={containerStyle}>
+
+        {
+          paginatedPosts.map((post) => (
+            <Card body={post.body} id={post.id} title={post.title} userId={post.userId} />
+          ))
+        }
+      </div>
+
+      <div style={{justifyContent:"space-evenly",display:"flex",margin:"0 0 30px 30px"}}>
+
+        {Array.from({ length: Math.ceil(posts.length / postsPerPage) }, (_, index) => (
+          <button key={index + 1} onClick={() => paginate(index + 1)}>
+            {index + 1}
+          </button>
+        ))}
+      </div>
+
+    </>
   );
 };
 
@@ -42,7 +66,6 @@ const Card = ({ body, id, title, userId }) => {
     <AnimatedText text={`Post ${id} / UID ${userId}`} size="10px" />
     <AnimatedText text={title} size="20px" />
     <br />
-
     <AnimatedText text={body} size="10px" />
   </div>;
 };
@@ -50,9 +73,9 @@ const Card = ({ body, id, title, userId }) => {
 const containerStyle = {
   display: 'flex',
   justifyContent: 'space-between',
-  alignItems: 'stretch', // Adjust as needed
-  flexWrap: 'wrap', // Allow cards to wrap to the next row
-  padding: '16px', // Adjust as needed
+  alignItems: 'stretch',
+  flexWrap: 'wrap', 
+  padding: '16px', 
   boxSizing: 'border-box',
 };
 const cardStyle = {
