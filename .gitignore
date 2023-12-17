@@ -37,3 +37,4 @@ next-env.d.ts
 
 #environment vars 
 .env
+node_modules

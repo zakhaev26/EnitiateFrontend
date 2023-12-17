@@ -10,13 +10,12 @@
 - Tailwind + Custom CSS for Styling certain areas of codebase 
 - HOC(Higher Order Components designed to Secure Routes using Firebase auth details)
 - Validation and Error Handling using Alerts 
+- Majorly written in Typescript
 - Best Practices using Next.js built-in features `Image` , `Link` , `Fonts`.
 
-[here="www.google.com"] 
 # Todo :
 [] Responsive Design
 [] Proper implementation of Zustand Stores 
-[] UI Improvements 
 
 ### Note: 
 > Make sure to create a `.env` file similar to `.env.example` to setup environment variables.
