@@ -50,7 +50,7 @@ const Container = () => {
           </div>
           <div className="pagination">
             {Array.from({ length: Math.ceil(posts.length / postsPerPage) }, (_, index) => (
-              <PaginationButton index={index} currentPage={currentPage} paginate={paginate} />
+              <PaginationButton key={index} index={index} currentPage={currentPage} paginate={paginate} />
             ))}
           </div>
           <div className='flex justify-between items-stretch flex-wrap p-4 box-border cursor-pointer'>
