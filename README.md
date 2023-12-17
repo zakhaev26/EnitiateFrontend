@@ -15,8 +15,8 @@
 - Best Practices using Next.js built-in features `Image` , `Link` , `Fonts`.
 
 # Todo :
-[] Responsive Design
-[] Proper implementation of Zustand Stores 
+- [] Responsive Design
+- [] Proper implementation of Zustand Stores 
 
 # References :
 - Main Source present at `src/` directory.
