@@ -1,3 +1,7 @@
+/**
+ * Dynamic Route displaying individual Posts.
+ */
+
 "use client"
 import AnimatedTextVar from "@/components/animations/textVariant";
 import { useEffect, useState } from "react";
@@ -16,18 +20,22 @@ function Page({ params }: Param) {
     const router = useRouter()
 
     useEffect(() => {
+
+        //Validation of postID 
         if (isNaN(postID) || postID < 1 || postID > 100) {
             alert(`Invalid post ID: ${postID}. Please provide a number between 1 and 100.`);
             router.push("/posts");
         }
-
+        
+        //fetch the data from API if postID is valid and store it in a React State 
         const fetchData = async () => {
             try {
                 const res: Response = await fetch(`${process.env.NEXT_PUBLIC_API_JSON_PLACEHOLDER_ALL_POSTS}/${postID}`);
-                const data: Post = await res.json();
+                const data: Post = await res.json(); // serialize JSON
                 setPost(data);
-                setLoading(false);
+                setLoading(false);//Turn off Loader animation
             } catch (error: any) {
+                /**Log errors in the console */
                 console.log(error.message);
                 setLoading(false);
             }
@@ -58,5 +66,7 @@ function Page({ params }: Param) {
     )
 }
 
-
+//Check whether user is authenticated or not using the HOC @withAuth Component.
+//if Not,Push to Home route
+//else , continue.
 export default withAuth(Page)

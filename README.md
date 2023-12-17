@@ -18,6 +18,12 @@
 [] Responsive Design
 [] Proper implementation of Zustand Stores 
 
+# References :
+- Main Source present at `src/` directory.
+- `/posts` : lists all posts in a paginated way 
+- `/posts/postID` : lists specific post with the given postID withing range of 1 - 100
+
+
 ### Note: 
 > Make sure to create a `.env` file similar to `.env.example` to setup environment variables.
 
