@@ -5,7 +5,6 @@ import HeroSvg from "../components/animations/hero__svg"
 import "./styles.css"
 import { UserAuth } from "@/auth/context/AuthContext"
 import { useRouter } from "next/navigation"
-import { useEffect} from "react"
 import AnimatedText from "@/components/animations/text"
 import SignpostIcon from '@mui/icons-material/Signpost';
 
@@ -47,26 +46,22 @@ export default function Home() {
   >
       .
       <div className='rectangle1'>
+
         <div className='nav'>
           <LogoSvg />
-          <motion.h1 className="logo"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
+          <motion.h1 className="logo" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}
           >Enitiate</motion.h1>
         </div>
 
         <div className="main__container">
+          
           <motion.div
-            animate={{
-              y: [0, -20, 0],
-            }}
+            animate={{y: [0, -20, 0],}}
             transition={{
               duration: 5,
               repeat: Infinity,
               repeatType: "reverse",
-            }}
-          >
+          }}>
             <HeroSvg />
           </motion.div>
 
@@ -74,7 +69,6 @@ export default function Home() {
 
             {user ? ( 
               <>
-
                 <img className="circular-img" src={user.photoURL} alt="" />
                 <AnimatedText text={user?.displayName} size="28" />
                 <AnimatedText text="Last Signed In :" size="14" />
