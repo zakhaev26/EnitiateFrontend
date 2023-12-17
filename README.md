@@ -15,8 +15,8 @@
 - Best Practices using Next.js built-in features `Image` , `Link` , `Fonts`.
 
 # Todo :
-[] Responsive Design
-[] Proper implementation of Zustand Stores 
+- [] Responsive Design
+- [] Proper implementation of Zustand Stores 
 
 ### Note: 
 > Make sure to create a `.env` file similar to `.env.example` to setup environment variables.
