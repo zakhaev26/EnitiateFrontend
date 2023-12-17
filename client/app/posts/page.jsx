@@ -1,12 +1,14 @@
 "use client"
 import AnimatedTextVar from '@/components/animations/textVariant';
-  import React, { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import './posts.css';
 import withAuth from "@/security/withAuth"
 import Card from "@/components/Card"
 import PaginationButton from "@/components/paginationButton"
 import Loader from "@/components/Loader"
 import SignoutButton from "@/components/SignoutButton"
+
+
 const Container = () => {
 
   const [loading, setLoading] = useState(true);
@@ -17,7 +19,7 @@ const Container = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_JSON_PLACEHOLDER_ALL_POSTS}`);
         const data = await res.json();
         setPosts(data);
         setLoading(false); // Set loading to false when data is fetched
