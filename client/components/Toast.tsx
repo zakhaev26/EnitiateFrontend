@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './toast.css'; // You can style the Toast component in a separate CSS file
 
-interface ToastProps {
-  message : string
-}
+
 
 const Toast = ({ message }:ToastProps) => {
   const [isVisible, setIsVisible] = useState(true);

@@ -1,11 +1,6 @@
 import React from 'react'
 import {motion } from "framer-motion";
 
-interface PaginationProps {
-  index: number,
-  paginate : (pageNumber :number) => void,
-  currentPage :number,
-}
 
 const paginationButton = ({index,paginate,currentPage} :PaginationProps) => {
   return (

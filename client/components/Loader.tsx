@@ -3,10 +3,6 @@ import React from 'react'
 import { ClipLoader } from 'react-spinners'
 
 
-interface LoaderProps {
-  loading: boolean;
-}
-
 const Loader = ({loading}:LoaderProps) => {
   return (
     <AnimatePresence>

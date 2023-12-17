@@ -3,7 +3,7 @@ import React, { CSSProperties } from 'react'
 import {motion} from "framer-motion"
 import AnimatedText from './animations/text';
 
-const cardStyle :CSSProperties = {
+const cardStyle : CSSProperties = {
     flex: '0 0 calc(33.33% - 16px)',
     padding: '16px',
     height: 'auto',
@@ -13,15 +13,6 @@ const cardStyle :CSSProperties = {
     margin: '8px',
     boxSizing: 'border-box',
 };
-
-
-interface Post {
-  id: number,
-  body: string,
-  userId: number,
-  title: string,
-}
-
 
 const Card = ({ body, id, title, userId } : Post) => {
     const routerx = useRouter();

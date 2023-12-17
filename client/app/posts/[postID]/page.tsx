@@ -8,24 +8,6 @@ import { useRouter } from "next/navigation";
 import Loader from "@/components/Loader"
 import Card from "@/components/Card"
 
-interface Param {
-    params: {
-        postID: number,
-    }
-}
-
-interface Post {
-    id: number,
-    body: string,
-    userId: number,
-    title: string,
-}
-
-interface PostList {
-    posts: Post[]
-}
-
-
 function Page({ params }: Param) {
 
     const { postID } = params;
