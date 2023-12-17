@@ -10,6 +10,7 @@
 - Tailwind + Custom CSS for Styling certain areas of codebase 
 - HOC(Higher Order Components designed to Secure Routes using Firebase auth details)
 - Validation and Error Handling using Alerts 
+- Created Docker File for the ease of running Application in containers
 - Majorly written in Typescript
 - Best Practices using Next.js built-in features `Image` , `Link` , `Fonts`.
 
