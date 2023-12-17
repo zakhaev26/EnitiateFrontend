@@ -1,8 +1,50 @@
+# NextJS Frontend
+- Made with NextJS 14 App Directory Structure
+- Animations using by Framer Motion
+- Google OAuth Sign-In and LogOut using Firebase Auth SDK 
+- Utilizes Server Side Components (SSR)
+- Zustand User State Management [ On the process , although firebase provides custom hooks to access user properites , but <a href= "./zustand/store/store.js">here</a>
+ is a full configured example of a zustand store implementing a minimalistic approach,just in case]
+- Using JSON PlaceHolder API to fetch `ALL` posts as well as `Individual` Posts 
+- Implements Pagination and Caching using `useMemo()` Hook to Boost Performance.
+- Tailwind + Custom CSS for Styling certain areas of codebase 
+- HOC(Higher Order Components designed to Secure Routes using Firebase auth details)
+- Validation and Error Handling using Alerts 
+- Best Practices using Next.js built-in features `Image` , `Link` , `Fonts`.
+
+[here="www.google.com"] 
+# Todo :
+[] Responsive Design
+[] Proper implementation of Zustand Stores 
+[] UI Improvements 
+
+### Note: 
+> Make sure to create a `.env` file similar to `.env.example` to setup environment variables.
+
+```.env
+#.env
+
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
+NEXT_PUBLIC_API_JSON_PLACEHOLDER_ALL_POSTS=https://jsonplaceholder.typicode.com/posts
+
+```
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+Install Dependencies:
+
+```bash
+npm install 
+```
+
+Run the development server:
 
 ```bash
 npm run dev

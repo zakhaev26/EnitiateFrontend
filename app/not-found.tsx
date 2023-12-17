@@ -4,10 +4,10 @@ import LogoSvg from "../components/animations/logo__svg"
 import HeroSvg from "../components/animations/hero__svg"
 import "./styles.css"
 import AnimatedText from "@/components/animations/text"
-import { Link } from "@mui/material"
 import {useRouter} from "next/navigation";
 import Toast from "../components/Toast"
-import { useEffect } from "react"
+
+
 export default function Home() {
 
   const Router = useRouter();

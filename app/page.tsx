@@ -7,6 +7,7 @@ import { UserAuth } from "@/auth/context/AuthContext"
 import { useRouter } from "next/navigation"
 import AnimatedText from "@/components/animations/text"
 import SignpostIcon from '@mui/icons-material/Signpost';
+import Image from "next/image"
 
 export default function Home() {
 
@@ -69,7 +70,8 @@ export default function Home() {
 
             {user ? ( 
               <>
-                <img className="circular-img" src={user.photoURL} alt="" />
+                <Image className="circular-img" src={user.photoURL} alt="" 
+                width={150} height={150}/>
                 <AnimatedText text={user?.displayName} size="28" />
                 <AnimatedText text="Last Signed In :" size="14" />
                 <AnimatedText text={user.metadata.lastSignInTime} size="10" />
