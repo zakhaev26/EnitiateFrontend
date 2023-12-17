@@ -9,7 +9,7 @@ const SignoutButton = () => {
         try {
             await logOut();
             Router.push("/");
-        } catch (error) {
+        } catch (error :any) {
             alert(error.message);
         }
     }

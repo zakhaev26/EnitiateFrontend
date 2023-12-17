@@ -1,9 +1,9 @@
 import { useRouter } from 'next/navigation';
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import {motion} from "framer-motion"
 import AnimatedText from './animations/text';
 
-const cardStyle = {
+const cardStyle :CSSProperties = {
     flex: '0 0 calc(33.33% - 16px)',
     padding: '16px',
     height: 'auto',
@@ -12,23 +12,31 @@ const cardStyle = {
     borderRadius: '8px',
     margin: '8px',
     boxSizing: 'border-box',
-  };
+};
 
-  
-const Card = ({ body, id, title, userId }) => {
+
+interface Post {
+  id: number,
+  body: string,
+  userId: number,
+  title: string,
+}
+
+
+const Card = ({ body, id, title, userId } : Post) => {
     const routerx = useRouter();
   
     return (
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -20 }}
-        transition={{ duration: 0.5 }}
-        style={cardStyle}
-        onClick={() => {
-          routerx.push(`posts/${id}`)
-        }}
-      >
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5 }}
+          style={cardStyle}
+          onClick={() => {
+            routerx.push(`posts/${id}`)
+          }}
+        >
         <AnimatedText text={`Post ${id} / UID ${userId}`} size="10px" />
         <AnimatedText text={title} size="20px" />
         <br />

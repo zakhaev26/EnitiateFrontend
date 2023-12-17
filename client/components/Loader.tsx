@@ -2,7 +2,12 @@ import { AnimatePresence ,motion} from 'framer-motion'
 import React from 'react'
 import { ClipLoader } from 'react-spinners'
 
-const Loader = ({loading}) => {
+
+interface LoaderProps {
+  loading: boolean;
+}
+
+const Loader = ({loading}:LoaderProps) => {
   return (
     <AnimatePresence>
     {loading && (

@@ -9,12 +9,20 @@ import Loader from "@/components/Loader"
 import SignoutButton from "@/components/SignoutButton"
 
 
+interface Post {
+  id: number,
+  body: string,
+  userId: number,
+  title: string,
+}
+
+
 const Container = () => {
 
-  const [loading, setLoading] = useState(true);
-  const [posts, setPosts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [posts, setPosts] = useState<Post[] | any >([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [postsPerPage] = useState<number>(10);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,15 +31,15 @@ const Container = () => {
         const data = await res.json();
         setPosts(data);
         setLoading(false); // Set loading to false when data is fetched
-      } catch (e) {
-        console.log(e.message);
+      } catch (error :any) {
+        console.log(error.message);
         setLoading(false); // Set loading to false in case of an error
       }
     };
     fetchData();
   }, []);
 
-  const paginate = (pageNumber) => {
+  const paginate = (pageNumber : number) => {
     setCurrentPage(pageNumber);
   };
 
@@ -55,7 +63,7 @@ const Container = () => {
             ))}
           </div>
           <div className='flex justify-between items-stretch flex-wrap p-4 box-border cursor-pointer'>
-            {paginatedPosts.map((post) => (
+            {paginatedPosts.map((post : Post) => (
               <Card key={post.id} body={post.body} id={post.id} title={post.title} userId={post.userId} />
             ))}
           </div>

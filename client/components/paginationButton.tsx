@@ -1,7 +1,13 @@
 import React from 'react'
 import {motion } from "framer-motion";
 
-const paginationButton = ({index,paginate,currentPage}) => {
+interface PaginationProps {
+  index: number,
+  paginate : (pageNumber :number) => void,
+  currentPage :number,
+}
+
+const paginationButton = ({index,paginate,currentPage} :PaginationProps) => {
   return (
     <motion.button
     whileHover={{ scale: 1.1 }}
