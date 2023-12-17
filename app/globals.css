@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(191.53deg, #79F2EC 0%, #14518E 100%)  ;
+  z-index: -90;
+}
+
+h1,h2,h3,p{
+  color:white
+}
